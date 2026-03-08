@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Working Directory
+
+All new files and notes go into the `00-notes/` directory unless explicitly told otherwise.
+
 ## Project Overview
 
 This is the source repository for **Pro Git, Second Edition** — the official Git book published at https://git-scm.com/book. Content is written in AsciiDoc and built into HTML, PDF, EPUB, Mobi, and FB2 formats using Ruby-based tooling (Asciidoctor).
