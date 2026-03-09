@@ -3,32 +3,32 @@
 ```
 Git on the Server
 ├── The Protocols
-│   ├── Local Protocol
-│   ├── The HTTP Protocols
-│   ├── The SSH Protocol
-│   └── The Git Protocol
+│   ├── Local Protocol ................................. [comparison]
+│   ├── The HTTP Protocols ............................. [comparison]
+│   ├── The SSH Protocol ............................... [comparison]
+│   └── The Git Protocol ............................... [comparison]
 │
 ├── Getting Git on a Server
-│   ├── Putting the Bare Repository on a Server
-│   └── Small Setups
+│   ├── Putting the Bare Repository on a Server ........ [procedure]
+│   └── Small Setups ................................... [concept]
 │
-├── Generating Your SSH Public Key
+├── Generating Your SSH Public Key ..................... [procedure]
 │
-├── Setting Up the Server
+├── Setting Up the Server .............................. [procedure]
 │
-├── Git Daemon
+├── Git Daemon ......................................... [config]
 │
-├── Smart HTTP
+├── Smart HTTP ......................................... [config]
 │
-├── GitWeb
+├── GitWeb ............................................. [procedure]
 │
 ├── GitLab
-│   ├── Installation
-│   ├── Administration
-│   ├── Basic Usage
-│   └── Working Together
+│   ├── Installation ................................... [reference]
+│   ├── Administration ................................. [overview]
+│   ├── Basic Usage .................................... [walkthrough]
+│   └── Working Together ............................... [concept]
 │
-├── Third Party Hosted Options
+├── Third Party Hosted Options ......................... [overview]
 │
-└── Summary
+└── Summary ............................................ [overview]
 ```

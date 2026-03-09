@@ -2,43 +2,43 @@
 
 ```
 Git Internals
-├── Plumbing and Porcelain
+├── Plumbing and Porcelain ............................. [concept]
 │
 ├── Git Objects
-│   ├── Tree Objects
-│   ├── Commit Objects
-│   └── Object Storage
+│   ├── Tree Objects ................................... [internals]
+│   ├── Commit Objects ................................. [internals]
+│   └── Object Storage ................................. [internals]
 │
 ├── Git References
-│   ├── The HEAD
-│   ├── Tags
-│   └── Remotes
+│   ├── The HEAD ....................................... [internals]
+│   ├── Tags ........................................... [internals]
+│   └── Remotes ........................................ [internals]
 │
-├── Packfiles
+├── Packfiles .......................................... [internals]
 │
 ├── The Refspec
-│   ├── Pushing Refspecs
-│   └── Deleting References
+│   ├── Pushing Refspecs ............................... [reference]
+│   └── Deleting References ............................ [reference]
 │
 ├── Transfer Protocols
-│   ├── The Dumb Protocol
-│   ├── The Smart Protocol
-│   └── Protocols Summary
+│   ├── The Dumb Protocol .............................. [internals]
+│   ├── The Smart Protocol ............................. [internals]
+│   └── Protocols Summary .............................. [overview]
 │
 ├── Maintenance and Data Recovery
-│   ├── Maintenance
-│   ├── Data Recovery
-│   └── Removing Objects
+│   ├── Maintenance .................................... [internals]
+│   ├── Data Recovery .................................. [walkthrough]
+│   └── Removing Objects ............................... [walkthrough]
 │
 ├── Environment Variables
-│   ├── Global Behavior
-│   ├── Repository Locations
-│   ├── Pathspecs
-│   ├── Committing
-│   ├── Networking
-│   ├── Diffing and Merging
-│   ├── Debugging
-│   └── Miscellaneous
+│   ├── Global Behavior ................................ [reference]
+│   ├── Repository Locations ........................... [reference]
+│   ├── Pathspecs ...................................... [reference]
+│   ├── Committing ..................................... [reference]
+│   ├── Networking ..................................... [reference]
+│   ├── Diffing and Merging ............................ [reference]
+│   ├── Debugging ...................................... [reference]
+│   └── Miscellaneous .................................. [reference]
 │
-└── Summary
+└── Summary ............................................ [overview]
 ```

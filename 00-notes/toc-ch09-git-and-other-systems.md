@@ -3,15 +3,15 @@
 ```
 Git and Other Systems
 ├── Git as a Client
-│   ├── Git and Subversion
-│   ├── Git and Mercurial
-│   └── Git and Perforce
+│   ├── Git and Subversion ............................. [integration]
+│   ├── Git and Mercurial .............................. [integration]
+│   └── Git and Perforce ............................... [integration]
 │
 ├── Migrating to Git
-│   ├── Subversion
-│   ├── Mercurial
-│   ├── Perforce
-│   └── A Custom Importer
+│   ├── Subversion ..................................... [procedure]
+│   ├── Mercurial ...................................... [procedure]
+│   ├── Perforce ....................................... [procedure]
+│   └── A Custom Importer .............................. [walkthrough]
 │
-└── Summary
+└── Summary ............................................ [overview]
 ```

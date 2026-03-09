@@ -3,40 +3,40 @@
 ```
 GitHub
 ├── Account Setup and Configuration
-│   ├── SSH Access
-│   ├── Your Avatar
-│   ├── Your Email Addresses
-│   └── Two Factor Authentication
+│   ├── SSH Access ..................................... [config]
+│   ├── Your Avatar .................................... [config]
+│   ├── Your Email Addresses ........................... [config]
+│   └── Two Factor Authentication ...................... [config]
 │
 ├── Contributing to a Project
-│   ├── Forking Projects
-│   ├── The GitHub Flow
-│   ├── Advanced Pull Requests
-│   ├── GitHub Flavored Markdown
-│   └── Keep your GitHub public repository up-to-date
+│   ├── Forking Projects ............................... [concept]
+│   ├── The GitHub Flow ................................ [walkthrough]
+│   ├── Advanced Pull Requests ......................... [walkthrough]
+│   ├── GitHub Flavored Markdown ....................... [reference]
+│   └── Keep your GitHub public repository up-to-date .. [procedure]
 │
 ├── Maintaining a Project
-│   ├── Creating a New Repository
-│   ├── Adding Collaborators
-│   ├── Managing Pull Requests
-│   ├── Mentions and Notifications
-│   ├── Special Files
-│   ├── README
-│   ├── CONTRIBUTING
-│   └── Project Administration
+│   ├── Creating a New Repository ...................... [procedure]
+│   ├── Adding Collaborators ........................... [procedure]
+│   ├── Managing Pull Requests ......................... [walkthrough]
+│   ├── Mentions and Notifications ..................... [concept]
+│   ├── Special Files .................................. [overview]
+│   ├── README ......................................... [concept]
+│   ├── CONTRIBUTING ................................... [concept]
+│   └── Project Administration ......................... [procedure]
 │
 ├── Managing an Organization
-│   ├── Organization Basics
-│   ├── Teams
-│   └── Audit Log
+│   ├── Organization Basics ............................ [overview]
+│   ├── Teams .......................................... [walkthrough]
+│   └── Audit Log ...................................... [overview]
 │
 ├── Scripting GitHub
-│   ├── Services and Hooks
-│   ├── The GitHub API
-│   ├── Basic Usage
-│   ├── Commenting on an Issue
-│   ├── Changing the Status of a Pull Request
-│   └── Octokit
+│   ├── Services and Hooks ............................. [integration]
+│   ├── The GitHub API ................................. [overview]
+│   ├── Basic Usage .................................... [walkthrough]
+│   ├── Commenting on an Issue ......................... [walkthrough]
+│   ├── Changing the Status of a Pull Request .......... [walkthrough]
+│   └── Octokit ........................................ [integration]
 │
-└── Summary
+└── Summary ............................................ [overview]
 ```

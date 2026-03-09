@@ -3,74 +3,74 @@
 ```
 Git Commands
 ├── Setup and Config
-│   ├── git config
-│   ├── git config core.editor commands
-│   └── git help
+│   ├── git config ..................................... [reference]
+│   ├── git config core.editor commands ................ [reference]
+│   └── git help ....................................... [reference]
 │
 ├── Getting and Creating Projects
-│   ├── git init
-│   └── git clone
+│   ├── git init ....................................... [reference]
+│   └── git clone ...................................... [reference]
 │
 ├── Basic Snapshotting
-│   ├── git add
-│   ├── git status
-│   ├── git diff
-│   ├── git difftool
-│   ├── git commit
-│   ├── git reset
-│   ├── git rm
-│   ├── git mv
-│   └── git clean
+│   ├── git add ........................................ [reference]
+│   ├── git status ..................................... [reference]
+│   ├── git diff ....................................... [reference]
+│   ├── git difftool ................................... [reference]
+│   ├── git commit ..................................... [reference]
+│   ├── git reset ...................................... [reference]
+│   ├── git rm ......................................... [reference]
+│   ├── git mv ......................................... [reference]
+│   └── git clean ...................................... [reference]
 │
 ├── Branching and Merging
-│   ├── git branch
-│   ├── git checkout
-│   ├── git merge
-│   ├── git mergetool
-│   ├── git log
-│   ├── git stash
-│   └── git tag
+│   ├── git branch ..................................... [reference]
+│   ├── git checkout ................................... [reference]
+│   ├── git merge ...................................... [reference]
+│   ├── git mergetool .................................. [reference]
+│   ├── git log ........................................ [reference]
+│   ├── git stash ...................................... [reference]
+│   └── git tag ........................................ [reference]
 │
 ├── Sharing and Updating Projects
-│   ├── git fetch
-│   ├── git pull
-│   ├── git push
-│   ├── git remote
-│   ├── git archive
-│   └── git submodule
+│   ├── git fetch ...................................... [reference]
+│   ├── git pull ....................................... [reference]
+│   ├── git push ....................................... [reference]
+│   ├── git remote ..................................... [reference]
+│   ├── git archive .................................... [reference]
+│   └── git submodule .................................. [reference]
 │
 ├── Inspection and Comparison
-│   ├── git show
-│   ├── git shortlog
-│   └── git describe
+│   ├── git show ....................................... [reference]
+│   ├── git shortlog ................................... [reference]
+│   └── git describe ................................... [reference]
 │
 ├── Debugging
-│   ├── git bisect
-│   ├── git blame
-│   └── git grep
+│   ├── git bisect ..................................... [reference]
+│   ├── git blame ...................................... [reference]
+│   └── git grep ....................................... [reference]
 │
 ├── Patching
-│   ├── git cherry-pick
-│   ├── git rebase
-│   └── git revert
+│   ├── git cherry-pick ................................ [reference]
+│   ├── git rebase ..................................... [reference]
+│   └── git revert ..................................... [reference]
 │
 ├── Email
-│   ├── git apply
-│   ├── git am
-│   ├── git format-patch
-│   ├── git imap-send
-│   ├── git send-email
-│   └── git request-pull
+│   ├── git apply ...................................... [reference]
+│   ├── git am ......................................... [reference]
+│   ├── git format-patch ............................... [reference]
+│   ├── git imap-send .................................. [reference]
+│   ├── git send-email ................................. [reference]
+│   └── git request-pull ............................... [reference]
 │
 ├── External Systems
-│   ├── git svn
-│   └── git fast-import
+│   ├── git svn ........................................ [reference]
+│   └── git fast-import ................................ [reference]
 │
 ├── Administration
-│   ├── git gc
-│   ├── git fsck
-│   ├── git reflog
-│   └── git filter-branch
+│   ├── git gc ......................................... [reference]
+│   ├── git fsck ....................................... [reference]
+│   ├── git reflog ..................................... [reference]
+│   └── git filter-branch .............................. [reference]
 │
-└── Plumbing Commands
+└── Plumbing Commands .................................. [reference]
 ```

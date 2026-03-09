@@ -3,26 +3,26 @@
 ```
 Customizing Git
 ├── Git Configuration
-│   ├── Basic Client Configuration
-│   ├── Colors in Git
-│   ├── External Merge and Diff Tools
-│   ├── Formatting and Whitespace
-│   └── Server Configuration
+│   ├── Basic Client Configuration ..................... [reference]
+│   ├── Colors in Git .................................. [config]
+│   ├── External Merge and Diff Tools .................. [walkthrough]
+│   ├── Formatting and Whitespace ...................... [config]
+│   └── Server Configuration ........................... [reference]
 │
 ├── Git Attributes
-│   ├── Binary Files
-│   ├── Keyword Expansion
-│   ├── Exporting Your Repository
-│   └── Merge Strategies
+│   ├── Binary Files ................................... [config]
+│   ├── Keyword Expansion .............................. [walkthrough]
+│   ├── Exporting Your Repository ...................... [config]
+│   └── Merge Strategies ............................... [config]
 │
 ├── Git Hooks
-│   ├── Installing a Hook
-│   ├── Client-Side Hooks
-│   └── Server-Side Hooks
+│   ├── Installing a Hook .............................. [procedure]
+│   ├── Client-Side Hooks .............................. [reference]
+│   └── Server-Side Hooks .............................. [reference]
 │
 ├── An Example Git-Enforced Policy
-│   ├── Server-Side Hook
-│   └── Client-Side Hooks
+│   ├── Server-Side Hook ............................... [walkthrough]
+│   └── Client-Side Hooks .............................. [walkthrough]
 │
-└── Summary
+└── Summary ............................................ [overview]
 ```

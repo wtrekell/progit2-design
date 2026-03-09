@@ -2,23 +2,23 @@
 
 ```
 Embedding Git in your Applications
-├── Command-line Git
+├── Command-line Git ................................... [concept]
 │
 ├── Libgit2
-│   ├── Advanced Functionality
-│   ├── Other Bindings
-│   └── Further Reading
+│   ├── Advanced Functionality ......................... [walkthrough]
+│   ├── Other Bindings ................................. [reference]
+│   └── Further Reading ................................ [reference]
 │
 ├── JGit
-│   ├── Getting Set Up
-│   ├── Plumbing
-│   ├── Porcelain
-│   └── Further Reading
+│   ├── Getting Set Up ................................. [procedure]
+│   ├── Plumbing ....................................... [walkthrough]
+│   ├── Porcelain ...................................... [walkthrough]
+│   └── Further Reading ................................ [reference]
 │
 ├── go-git
-│   ├── Advanced Functionality
-│   └── Further Reading
+│   ├── Advanced Functionality ......................... [walkthrough]
+│   └── Further Reading ................................ [reference]
 │
 └── Dulwich
-    └── Further Reading
+    └── Further Reading ................................ [reference]
 ```
