@@ -12,200 +12,224 @@ A unified storyline solves all three problems. Readers follow one product, one t
 
 ---
 
-## Proposed Storyline: "Meadow" — A Design System for a Wellness App
+## Proposed Storyline: "SketchSpark" — AI-Powered Rapid Prototyping
+
+### The Product
+SketchSpark is an AI-powered rapid prototyping application. A designer uploads or draws a rough sketch, and the system generates up to 5 polished UI options in parallel. The designer reviews, selects, and refines a direction — then iterates toward a shippable product.
 
 ### Why This Product
-- A wellness/health app is visually rich (illustrations, icons, color palettes, typography) — maximizes design artifact variety
-- Broad enough to require multiple component types (forms, cards, navigation, charts, onboarding flows)
-- Relatable across industries — not tied to fintech, e-commerce, or gaming jargon
-- Naturally involves accessibility concerns (contrast, screen readers, motion sensitivity)
+- **Parallel generation mirrors Git branching**: 5 options from 1 sketch = 5 branches from 1 commit. The core metaphor is baked into the product itself.
+- **Full design lifecycle**: research (user interviews, competitive analysis), concept design (sketches, information architecture), UI design (wireframes, mockups), visual design (high-fidelity screens, motion), development, testing, launch, iteration — every phase produces distinct artifacts that need version control.
+- **Rich artifact variety**: research briefs, persona documents, journey maps, wireframes, AI model configuration files, prompt templates, training data manifests, screen mockups, icon sets, motion specs, design tokens, and production assets — a mix of text (Git-friendly) and binary (Git-challenged) files that naturally teaches both workflows.
+- **AI component adds modern relevance**: model configs (`model-params.yaml`), prompt templates (`prompts/sketch-to-ui.txt`), and generation pipelines are text files that merge cleanly — contrasting with binary mockup files that don't.
+- **Accessible domain**: every designer understands "sketch to prototype" — no industry-specific jargon required.
 
 ### The Team
 
 | Character | Role | Personality Trait | Introduced |
 |-----------|------|-------------------|------------|
-| **Nora** | Lead Designer / Design System Owner | Methodical, sets standards | Ch1 |
-| **Sam** | UI Designer (components) | Moves fast, sometimes forgets to commit cleanly | Ch2 |
-| **Priya** | Visual Designer (illustrations, icons) | Works with large binary files | Ch3 |
-| **Dev (the developer)** | Frontend Engineer | Bridge between design and code — consumes tokens | Ch5 |
+| **Nora** | UX Lead / Product Owner | Methodical researcher, sets standards, writes the briefs | Ch1 |
+| **Sam** | UI/Visual Designer | Fast mover, generates options quickly, sometimes commits messy | Ch2 |
+| **Priya** | Concept Designer / Illustrator | Works with large binary files (sketches, illustrations, journey maps) | Ch3 |
+| **Kai** | Frontend Engineer / ML Integration | Bridges design and code, maintains AI pipeline configs | Ch5 |
 
-Four characters are enough to demonstrate solo work, pair collaboration, team coordination, and cross-functional handoff. Each has a trait that naturally triggers specific Git scenarios.
+Each character's working style naturally triggers specific Git scenarios:
+- **Nora's** research documents and briefs are text-heavy — perfect for diffs and merges
+- **Sam's** speed creates stash/reset/amend situations — he commits too fast, forgets files, works on wrong branches
+- **Priya's** illustrations and high-fidelity mockups are large binaries — triggers LFS, attributes, and binary merge challenges
+- **Kai's** model configs and pipeline files are structured text — demonstrates cross-functional collaboration and submodules
 
 ### The Product Timeline
 
-The storyline maps to a realistic product lifecycle. Each chapter picks up where the prior left off:
+Each chapter picks up where the prior left off, following SketchSpark from idea to shipped product:
 
-| Chapter | Story Phase | What Happens |
-|---------|-------------|--------------|
-| **Ch1** | Discovery | Nora discovers version control after losing a week of work when her "final-v3-REAL" folder gets overwritten. She learns what Git is and installs it. |
-| **Ch2** | Foundation | Nora creates the Meadow design system repo. Adds `design-tokens.json`, component documentation, and exported assets. Learns status, add, commit, diff, log. Her first `.gitignore` excludes `.sketch` temp files. |
-| **Ch3** | Exploration | Sam joins. They use branches to explore a dark mode variant (`feature/dark-mode`) while Nora continues refining the light theme on `main`. Their first merge conflict: both edited `colors.json`. |
-| **Ch4** | Infrastructure | The team picks GitHub to host the repo (not a bare server). Nora sets up branch protection so `main` requires a review before merge. |
-| **Ch5** | Collaboration | Priya joins for an icon overhaul. Three designers coordinate: Nora on tokens, Sam on components, Priya on icons. They practice the integration-manager workflow. First design system release (`v1.0`). |
-| **Ch6** | Open Source | Meadow's design system goes public on GitHub. An external contributor (Marcus) forks it and submits a PR adding a Tooltip component. Nora reviews, requests changes, merges. |
-| **Ch7** | Maturity | The team handles real-world complexity: Sam stashes half-finished button states to fix a production color bug. Priya uses `git blame` to find when an icon color changed. Nora uses interactive rebase to clean up a messy token migration history. |
-| **Ch8** | Customization | Nora configures `.gitattributes` for binary design files, sets up a commit message template (`[Component: X]`), and adds a pre-commit hook that validates token JSON syntax. |
-| **Ch9** | Migration | The team migrates legacy brand assets from an SVN archive into the Git repo. They handle large binary files and history cleanup. |
-| **Ch10** | Mastery | Sam accidentally force-resets `main`, losing recent commits. Nora uses reflog to recover. The chapter demystifies Git internals through the lens of "your work is never truly lost." |
-| **App A** | Tooling | The team evaluates VS Code vs. GitHub Desktop vs. CLI for their workflow. Decision tree based on comfort level. |
-| **App B** | Integration | The team considers how design tools (Figma plugins, token pipelines) integrate with Git under the hood. |
-| **App C** | Reference | Quick-reference card organized by Meadow workflow phases, not command taxonomy. |
+| Chapter | Product Phase | What Happens |
+|---------|---------------|--------------|
+| **Ch1** | Research & Discovery | Nora loses a week of user research notes when her "interview-notes-FINAL-v3" folder gets overwritten by a sync conflict. She discovers Git. Installs it. Learns what version control means through the lens of protecting research artifacts. |
+| **Ch2** | Concept Design | Nora creates the SketchSpark repo. Adds the product brief (`product-brief.md`), early wireframes, competitive analysis, and persona documents. Learns status, add, commit, diff, log. Creates `.gitignore` for design tool temp files. First tag: `v0.1-concept`. |
+| **Ch3** | Parallel Exploration | Sam joins to explore UI directions. The core product idea — 5 options from 1 sketch — plays out in their workflow: Sam creates 3 branches (`option/card-layout`, `option/list-layout`, `option/canvas-freeform`) to explore different approaches to the results screen. Nora continues refining the input sketch flow on `main`. Their first merge conflict: both edited `user-flows.md`. |
+| **Ch4** | Team Infrastructure | The team moves from local-only to GitHub. Nora sets up the org, branch protection (no direct pushes to `main`), and team roles. They evaluate hosting options — GitHub wins over self-hosted for a startup-stage product. |
+| **Ch5** | Design & Build Sprint | Priya joins for illustration and high-fidelity mockups. Kai joins to build the AI generation pipeline. Four people coordinating: Nora on UX flows, Sam on UI screens, Priya on onboarding illustrations, Kai on model configs. Integration-manager workflow. First milestone release: `v0.5-alpha` — the sketch-to-options pipeline works end to end. |
+| **Ch6** | Public Beta & Community | SketchSpark launches a public beta on GitHub. External contributor (Marcus) forks the repo and submits a PR improving the prompt template for better mobile layouts. Nora reviews with annotated screenshots, requests changes, merges. The team writes CONTRIBUTING.md with guidelines for prompt templates, asset specs, and accessibility requirements. |
+| **Ch7** | Production Hardening | Real-world complexity hits: Sam stashes half-finished screen designs to hotfix a broken onboarding flow. Priya uses `git blame` to find when an illustration's color palette drifted from the brand guide. Nora uses interactive rebase to clean up a messy sprint of "fix layout" / "fix layout again" / "actually fix layout" commits. Kai's AI pipeline repo becomes a submodule. |
+| **Ch8** | Process & Automation | Nora configures `.gitattributes` for Priya's binary illustration files, creates a commit message template (`[Phase: Component] Description`), and adds a pre-commit hook that validates `model-params.yaml` syntax and checks that prompt templates don't exceed token limits. |
+| **Ch9** | Legacy Migration | The company acquires a competitor whose design assets live in SVN. The team migrates 3 years of mockups, illustrations, and research documents into the SketchSpark repo. They handle large binaries, history cleanup, and Git LFS setup. |
+| **Ch10** | Scale & Recovery | Sam accidentally force-resets `main`, losing three days of work before a launch deadline. Nora uses reflog to recover every commit. The chapter demystifies Git internals through the lens of "your work is never truly lost" — critical when months of design research, illustrations, and AI configs are at stake. |
+| **App A** | Tooling Choices | Each team member uses different tools: Nora uses CLI, Sam prefers VS Code's Git panel for visual diffs of screen designs, Priya uses GitHub Desktop for large file management, Kai uses JetBrains. Decision tree based on role and comfort. |
+| **App B** | Tool Integration | Kai explains how SketchSpark's own AI pipeline uses libgit2 under the hood to version-control generated options. Priya explores how Figma plugins use Dulwich (Python) to auto-export assets to Git. |
+| **App C** | Reference | Quick-reference card organized by SketchSpark workflow phases: "Starting research" (init, clone), "Daily design work" (branch, add, commit, status), "Reviewing options" (diff, log, show), "Shipping a release" (tag, merge, push). |
 
 ---
 
 ## Artifact Continuity Map
 
-These artifacts appear and evolve across chapters, giving readers anchoring reference points:
+These artifacts appear and evolve across chapters, giving readers anchoring reference points.
 
 ### Core Files (appear 5+ chapters)
 
 | Artifact | First Appears | Evolves Through | Purpose |
 |----------|---------------|-----------------|---------|
-| `design-tokens.json` | Ch2 (created) | Ch3 (dark mode added), Ch5 (v1.0 release), Ch7 (migration cleanup), Ch8 (validation hook) | The primary "code-like" design file — mergeable, diffable, central to the system |
-| `colors.json` (subset of tokens) | Ch2 (initial palette) | Ch3 (merge conflict), Ch5 (coordinated update), Ch7 (blame for change), Ch8 (diff config) | Most relatable file for designers — color values changing |
-| `components/button/` | Ch2 (first component) | Ch3 (dark mode variant), Ch5 (Sam's work), Ch7 (stash scenario), Ch8 (commit template) | The universal UI component — every designer understands buttons |
-| `.gitignore` | Ch2 (created) | Ch8 (expanded for design tools) | Practical file designers need immediately |
-| `README.md` | Ch2 (basic) | Ch6 (expanded for public repo) | Entry point for contributors |
+| `product-brief.md` | Ch2 (created) | Ch3 (updated with chosen direction), Ch5 (alpha scope), Ch6 (public beta scope), Ch8 (commit template references it) | The "source of truth" text file — mergeable, diffable, anchors every design decision |
+| `user-flows.md` | Ch2 (initial sketch flow) | Ch3 (merge conflict — Nora and Sam both edited), Ch5 (expanded for full pipeline), Ch7 (blame to find when a flow changed) | Primary UX artifact — where merge conflicts feel real and relatable |
+| `screens/results/` | Ch3 (3 layout options as branches) | Ch5 (Sam's production screens), Ch7 (stash scenario mid-redesign), Ch8 (commit template) | The heart of the product — where parallel options become parallel branches |
+| `model-params.yaml` | Ch5 (Kai creates) | Ch7 (submodule), Ch8 (pre-commit validation hook), Ch10 (recovered via reflog) | Structured text config — demonstrates Git-friendly AI/ML files alongside binary design files |
+| `.gitignore` | Ch2 (created) | Ch5 (expanded for build artifacts), Ch8 (expanded for design tools and model caches) | Practical file designers need immediately |
 
 ### Secondary Files (appear 2-3 chapters)
 
 | Artifact | Chapters | Purpose |
 |----------|----------|---------|
-| `icons/` directory | Ch5 (Priya creates), Ch7 (blame for color change), Ch10 (packfile performance) | Binary file handling, large asset management |
-| `CONTRIBUTING.md` | Ch6 (created for open source), Ch8 (referenced in hooks) | Governance, standards |
-| `CHANGELOG.md` | Ch5 (v1.0 release), Ch7 (rewriting history) | Release documentation |
-| `typography.json` | Ch7 (selective staging), Ch8 (attributes config) | Second token file for staging/splitting scenarios |
+| `research/personas/` | Ch2 (Nora creates), Ch5 (referenced in sprint planning), Ch9 (migrated from legacy) | Text-heavy research artifacts — ideal for diffs |
+| `research/competitive-analysis.md` | Ch2 (created), Ch6 (updated when going public) | Shows how research docs evolve alongside product |
+| `illustrations/onboarding/` | Ch5 (Priya creates), Ch7 (blame for color drift), Ch10 (packfile performance with large PNGs) | Binary file handling — large asset management |
+| `prompts/sketch-to-ui.txt` | Ch5 (Kai creates), Ch6 (Marcus improves via PR), Ch8 (token-limit validation hook) | AI prompt templates — text files that external contributors can improve |
+| `CONTRIBUTING.md` | Ch6 (created for public beta), Ch8 (referenced in hooks) | Governance and standards for open contribution |
+| `CHANGELOG.md` | Ch5 (v0.5-alpha), Ch7 (rewriting history to clean up entries) | Release documentation |
+| `design-tokens.json` | Ch5 (Sam creates for handoff to Kai), Ch7 (selective staging — color vs. typography), Ch8 (attributes config) | Bridge between design and code — the handoff file |
+
+### Lifecycle Phase Artifacts
+
+| Product Phase | Key Artifacts | File Types | Git Behavior |
+|---------------|---------------|------------|--------------|
+| Research | `product-brief.md`, `personas/*.md`, `competitive-analysis.md`, `interview-notes/*.md` | Markdown, text | Fully mergeable, excellent diffs |
+| Concept Design | `user-flows.md`, `information-architecture.md`, `sketches/*.png` | Mixed | Text merges cleanly; sketch PNGs are binary |
+| UI Design | `screens/**/*.fig`, `screens/**/*.png`, `wireframes/*.md` | Mostly binary | Binary conflicts require manual resolution |
+| Visual Design | `illustrations/**/*.png`, `icons/**/*.svg`, `design-tokens.json` | Binary + JSON | SVGs diff as text; PNGs don't; tokens merge |
+| AI Pipeline | `model-params.yaml`, `prompts/*.txt`, `training-data-manifest.json` | Structured text | Fully mergeable, hookable, validatable |
+| Production | `assets/exported/**`, `docs/`, `CHANGELOG.md` | Mixed | Export-ignore for source files; archive for releases |
 
 ---
 
 ## Scene-by-Scene Storyline Mapping to Existing Recommendations
 
-### Chapter 1 — Discovery
+### Chapter 1 — Research & Discovery
 
 | Revision Note Recommendation | Storyline Scene |
 |------------------------------|-----------------|
-| Add concrete scenario after line 8's designer mention | Nora's "final-v3-REAL" folder disaster — she loses a week of button iterations |
-| CVCS = Figma shared file analogy | Nora compares her Figma workflow (centralized) to Git (distributed) |
-| Three states = draft/ready/approved | Nora maps modified/staged/committed to her existing review process |
-| Binary file support flag | Nora asks: "Can I version my Sketch files?" — honest answer about binary limitations |
+| Add concrete scenario after line 8's designer mention | Nora's "interview-notes-FINAL-v3" folder disaster — a cloud sync conflict overwrites a week of user research for the SketchSpark concept |
+| CVCS = Figma shared file analogy | Nora compares her team's shared Google Drive (centralized, single point of failure) to Git (full local copy of all research history) |
+| Three states = draft/ready/approved | Nora maps modified/staged/committed to her research workflow: draft notes → reviewed findings → published insight |
+| Binary file support flag | Nora asks: "Can I version my sketch mockups and interview recordings?" — honest answer about binary limitations sets up a theme that runs through every chapter |
 
-### Chapter 2 — Foundation
-
-| Revision Note Recommendation | Storyline Scene |
-|------------------------------|-----------------|
-| "Initializing a design system repository" | Nora runs `git init` in the `meadow-design-system` directory |
-| Replace `.c` file examples | All examples use `design-tokens.json`, `components/button/button.md`, exported PNGs |
-| `.gitignore` template for designers | Nora creates `.gitignore` excluding `.sketch~`, `*.figma_cache`, `node_modules/` |
-| Commit message conventions | Nora writes: `Add initial color palette and button component` |
-| Design token search in log | Nora uses `git log -S "primary-blue"` to find when she changed the brand color |
-| Tags for releases | Nora tags the repo's first stable state: `git tag -a v0.1 -m "Initial token set and button component"` |
-
-### Chapter 3 — Exploration
+### Chapter 2 — Concept Design
 
 | Revision Note Recommendation | Storyline Scene |
 |------------------------------|-----------------|
-| Branch as design variant | Sam creates `feature/dark-mode` to explore a dark palette without touching Nora's light theme |
-| Hotfix interruption scenario | Sam is working on dark mode; urgent accessibility bug on `main` button contrast — creates `hotfix/button-contrast` |
-| Merge conflict in token file | Both Nora and Sam edited `colors.json` — Nora updated `primary-blue`, Sam added `dark-bg`. They resolve together. |
-| Branch naming conventions | Team establishes: `feature/`, `fix/`, `hotfix/`, `experiment/` |
-| Rebasing as "replay on cleaner foundation" | Sam rebases dark mode onto main to pick up Nora's latest token structure |
+| "Initializing a design system repository" | Nora runs `git init` in the `sketchspark/` directory after completing the concept phase |
+| Replace `.c` file examples | All examples use `product-brief.md`, `research/personas/early-adopter.md`, `wireframes/sketch-input-flow.png` |
+| `.gitignore` template for designers | Nora creates `.gitignore` excluding `.sketch~`, `*.figma_cache`, `__MACOSX/`, `.DS_Store`, `node_modules/` |
+| Commit message conventions | Nora writes: `Add product brief and initial user flow wireframes` |
+| Design token search in log | Nora uses `git log -S "single sketch"` to find when the core product concept changed from "3 options" to "5 options" in the brief |
+| Tags for releases | Nora tags the concept milestone: `git tag -a v0.1-concept -m "Research complete, concept approved, entering UI exploration"` |
 
-### Chapter 4 — Infrastructure
-
-| Revision Note Recommendation | Storyline Scene |
-|------------------------------|-----------------|
-| Lead with hosted options | Nora evaluates GitHub vs. GitLab — picks GitHub for simplicity |
-| SSH key setup with context | Sam struggles with SSH keys — Nora walks him through it, comparing `.pub` file to a "trusted device" |
-| Branch protection | Nora enables `main` branch protection: PRs required, one approval needed |
-| Role mapping | Nora = admin, Sam = write, stakeholders = read-only |
-
-### Chapter 5 — Collaboration
+### Chapter 3 — Parallel Exploration
 
 | Revision Note Recommendation | Storyline Scene |
 |------------------------------|-----------------|
-| Three-person coordination | Nora (tokens), Sam (components), Priya (icons) work in parallel on feature branches |
-| Replace `lib/simplegit.rb` files | All file references: `design-tokens/colors.json`, `components/Button/`, `icons/navigation/` |
-| Integration-manager workflow | Nora acts as integrator — reviews and merges Sam's and Priya's branches |
-| Design system release cycle | Team releases Meadow v1.0: tag, archive, changelog |
-| Email workflow → skip notice | "Meadow uses GitHub PRs, not email patches" |
+| Branch as design variant | Sam creates `option/card-layout`, `option/list-layout`, `option/canvas-freeform` — three parallel UI directions for the results screen, mirroring SketchSpark's own "5 options from 1 sketch" philosophy |
+| Hotfix interruption scenario | Sam is deep in `option/card-layout`; Nora discovers a critical user flow gap in the sketch input screen on `main` — Sam creates `fix/sketch-input-upload-error` |
+| Merge conflict in token file | Both Nora and Sam edited `user-flows.md` — Nora refined the upload step, Sam added a "compare options" step. They resolve together, learning that text files merge but require coordination. |
+| Branch naming conventions | Team establishes: `option/` (design explorations), `feature/` (approved work), `fix/` (corrections), `research/` (investigation branches) |
+| Rebasing as "replay on cleaner foundation" | Sam rebases `option/card-layout` onto main to pick up Nora's updated user flow before the team reviews all three options side by side |
 
-### Chapter 6 — Open Source
-
-| Revision Note Recommendation | Storyline Scene |
-|------------------------------|-----------------|
-| Replace Arduino blink with design system PR | Marcus forks Meadow, creates `feature/tooltip-component`, adds SVG + token + docs, opens PR with screenshots |
-| Expand image embedding for reviews | Marcus includes light/dark mode screenshots in his PR; Nora annotates with feedback |
-| CONTRIBUTING.md for design projects | Nora writes guidelines: icon grid (24x24), token naming (`category-property-variant`), accessibility requirements |
-| GitHub Pages for documentation | Team deploys component documentation to `meadow-design-system.github.io` |
-| Async collaboration norms | Marcus is in a different timezone — PR review takes 24 hours; Nora leaves detailed written feedback |
-
-### Chapter 7 — Maturity
+### Chapter 4 — Team Infrastructure
 
 | Revision Note Recommendation | Storyline Scene |
 |------------------------------|-----------------|
-| Stashing scenario | Sam is halfway through new button states; production color bug reported; stashes work, fixes bug, pops stash |
-| `git blame` for design files | Priya uses `git blame icons/navigation/home.svg` to find who changed the icon stroke width |
-| Interactive staging | Nora's `design-tokens.json` has both color and typography updates; she stages only color changes for the current PR |
-| Reset demystified | Sam accidentally commits to `main` instead of his feature branch — uses `git reset` to move the commit |
-| Squashing messy history | Priya squashes "Add home icon" + "Fix home icon size" + "Adjust home icon padding" into clean "Add navigation home icon" |
-| Submodules | The product app repo includes `meadow-design-system` as a submodule — Dev updates the pointer when v1.1 releases |
+| Lead with hosted options | Nora evaluates GitHub vs. GitLab for the growing team — picks GitHub for its PR review workflow and project boards |
+| SSH key setup with context | Sam struggles with SSH keys — Nora walks him through it: "The `.pub` file is like a badge that proves who you are. The private file is your ID — never share it." |
+| Branch protection | Nora enables `main` branch protection: PRs required, one design review approval needed before merge. No direct commits to `main`. |
+| Role mapping | Nora = admin (merges to main, manages releases), Sam = write (creates branches, opens PRs), stakeholders = read-only (view progress, leave comments) |
 
-### Chapter 8 — Customization
+### Chapter 5 — Design & Build Sprint
 
 | Revision Note Recommendation | Storyline Scene |
 |------------------------------|-----------------|
-| `.gitattributes` for binary files | Nora configures: `*.png binary`, `*.sketch binary`, `*.svg diff` |
-| Commit message template | Team template: `[Component: Name] Description` — enforced by commit-msg hook |
-| Pre-commit hook | Hook validates `design-tokens.json` is valid JSON before allowing commit |
-| Image diffing | Nora sets up EXIF-based diffing so `git diff` shows metadata changes on PNG exports |
-| Export-ignore | `.sketch` source files are versioned but excluded from release archives |
+| Three-person coordination | Nora (UX flows and research updates), Sam (production UI screens), Priya (onboarding illustrations), Kai (AI pipeline configs) — four parallel workstreams |
+| Replace `lib/simplegit.rb` files | All file references: `screens/results/card-layout.fig`, `illustrations/onboarding/step-1.png`, `model-params.yaml`, `prompts/sketch-to-ui.txt` |
+| Integration-manager workflow | Nora acts as integrator — reviews Sam's screen PRs, Priya's illustration PRs, and Kai's pipeline PRs before merging to `main` |
+| Design system release cycle | Team releases SketchSpark `v0.5-alpha`: the sketch-to-options pipeline works end to end. Tag, archive, changelog. Sam creates `design-tokens.json` for handoff to Kai's frontend. |
+| Email workflow → skip notice | "The SketchSpark team uses GitHub PRs for all collaboration. Email-based patches are a legacy workflow — skip unless contributing to projects that require them." |
 
-### Chapter 9 — Migration
-
-| Revision Note Recommendation | Storyline Scene |
-|------------------------------|-----------------|
-| SVN design archive migration | The company's legacy brand assets (logos, illustrations) live in SVN. Nora migrates them into the Meadow repo. |
-| Large binary file handling | Migration surfaces 200MB of PSDs — team decides to use Git LFS for files >10MB |
-| Pre-import planning | Nora checks total size, identifies files for LFS, plans branch structure |
-
-### Chapter 10 — Mastery
+### Chapter 6 — Public Beta & Community
 
 | Revision Note Recommendation | Storyline Scene |
 |------------------------------|-----------------|
-| Reflog for data recovery | Sam runs `git reset --hard` on `main` by accident, losing three commits. Nora uses reflog to recover. |
-| Objects as "fingerprints" | Nora explains to Sam: "Every version of every file gets a unique ID. Even if you delete a branch, the data is still there." |
-| Packfiles and performance | Priya notices `git push` is slow — learns Git packs similar icon files together |
-| References as labels | "Branches are just sticky notes pointing to commits — moving them doesn't destroy anything" |
+| Replace Arduino blink with design system PR | Marcus forks SketchSpark, creates `feature/mobile-prompt-template`, improves `prompts/sketch-to-ui.txt` for better mobile layout generation, opens PR with before/after screenshots of generated options |
+| Expand image embedding for reviews | Marcus includes side-by-side screenshots: "Current mobile output" vs. "Improved mobile output" with 5 generated options each. Nora annotates with feedback directly in the PR. |
+| CONTRIBUTING.md for design projects | Nora writes guidelines: prompt template format, illustration specs (2x resolution, brand palette), screen mockup naming conventions, accessibility requirements for generated UI |
+| GitHub Pages for documentation | Team deploys SketchSpark user docs and API reference to `sketchspark.github.io` |
+| Async collaboration norms | Marcus is in a different timezone — PR review takes 24 hours. Nora leaves detailed written feedback with annotated screenshots rather than expecting a synchronous call. |
 
-### Appendix A — Tooling
-
-| Revision Note Recommendation | Storyline Scene |
-|------------------------------|-----------------|
-| Decision tree | Nora uses CLI, Sam prefers VS Code's Git panel, Priya uses GitHub Desktop for visual diffs of icons |
-| VS Code for token workflows | Sam edits `design-tokens.json` with inline Git diff highlighting |
-
-### Appendix B — Integration
+### Chapter 7 — Production Hardening
 
 | Revision Note Recommendation | Storyline Scene |
 |------------------------------|-----------------|
-| Design tool internals | Priya wonders how Figma plugins could auto-commit exported assets — learns about Dulwich (Python Git library) |
-| UX patterns for Git integration | Nora sketches a "version control panel" for a design tool prototype |
+| Stashing scenario | Sam is redesigning the results comparison screen; urgent bug report — the onboarding flow crashes on tablet. Sam stashes his half-finished screens, switches to `fix/onboarding-tablet`, fixes the layout, merges, pops his stash, and continues. |
+| `git blame` for design files | Priya uses `git blame illustrations/onboarding/step-2.png` to find who changed the illustration's color palette — it drifted from the brand guide three commits ago during a rushed sprint. |
+| Interactive staging | Nora's `product-brief.md` has both a scope change (adding tablet support) and a research update (new user interview findings). She stages only the research update for the current PR, saving the scope change for a separate review. |
+| Reset demystified | Sam accidentally commits directly to `main` instead of his feature branch — uses `git reset --soft HEAD~1` to move the commit back to staging, then creates the correct branch. |
+| Squashing messy history | Sam squashes "Update results layout" + "Fix results layout spacing" + "Actually fix the spacing this time" + "Tweak padding" into clean "Redesign results comparison screen for card layout" |
+| Submodules | Kai's AI pipeline repo (`sketchspark-ml`) becomes a submodule of the main product repo. When the model improves option generation quality, Kai updates the submodule pointer and the team pulls the new version. |
+
+### Chapter 8 — Process & Automation
+
+| Revision Note Recommendation | Storyline Scene |
+|------------------------------|-----------------|
+| `.gitattributes` for binary files | Nora configures: `*.png binary`, `*.fig binary`, `*.svg diff`, `*.md diff`, `*.yaml diff` — so Git knows which files can be meaningfully diffed |
+| Commit message template | Team template enforced by hook: `[Phase: Component] Description` — e.g., `[Design: Results Screen] Add tablet breakpoint layout` or `[Research: Persona] Update early-adopter goals after round 2 interviews` |
+| Pre-commit hook | Hook validates that `model-params.yaml` is valid YAML, checks that prompt templates in `prompts/` don't exceed 4096 tokens, and warns if PNG files exceed 5MB |
+| Image diffing | Nora sets up EXIF-based diffing so `git diff` shows metadata changes on exported screen mockups — dimensions, color profile, export date |
+| Export-ignore | `.fig` source files and `research/raw-interviews/` are versioned in Git but excluded from release archives via `.gitattributes export-ignore` |
+
+### Chapter 9 — Legacy Migration
+
+| Revision Note Recommendation | Storyline Scene |
+|------------------------------|-----------------|
+| SVN design archive migration | SketchSpark acquires a competitor ("QuickMock") whose 3 years of mockups, user research, and design assets live in SVN. Nora leads the migration into the SketchSpark repo. |
+| Large binary file handling | Migration surfaces 400MB of PSD source files and high-res mockups — team configures Git LFS for files >10MB |
+| Pre-import planning | Nora audits total size, identifies files for LFS, maps QuickMock's flat folder structure to SketchSpark's organized directory hierarchy, and plans which history to preserve vs. squash |
+
+### Chapter 10 — Scale & Recovery
+
+| Revision Note Recommendation | Storyline Scene |
+|------------------------------|-----------------|
+| Reflog for data recovery | Two days before the v1.0 launch, Sam runs `git reset --hard` on `main` by accident, losing three days of final polish commits. Nora uses `git reflog` to find the lost HEAD, creates a recovery branch, and restores everything. |
+| Objects as "fingerprints" | Nora explains to Sam: "Every version of every file — every screen mockup, every prompt template, every research note — gets a unique ID. Even if you delete a branch, the data is still in Git's object store." |
+| Packfiles and performance | Priya notices `git push` takes 90 seconds — learns that Git packs similar illustration files together using delta compression, but her 50MB PSD additions bypass efficient packing. The team moves large files to LFS. |
+| References as labels | "Branches are just labels pointing to commits — like sticky notes on a timeline. Moving them doesn't destroy anything. That's why Sam's 'lost' work was still there." |
+
+### Appendix A — Tooling Choices
+
+| Revision Note Recommendation | Storyline Scene |
+|------------------------------|-----------------|
+| Decision tree | Nora uses CLI (fastest for research doc workflows), Sam prefers VS Code's Git panel (inline diffs of screen designs and tokens), Priya uses GitHub Desktop (visual staging of large illustration files), Kai uses JetBrains (integrated with Python ML pipeline) |
+| VS Code for token workflows | Sam edits `design-tokens.json` and `user-flows.md` with inline Git gutter indicators showing what changed since last commit |
+
+### Appendix B — Tool Integration
+
+| Revision Note Recommendation | Storyline Scene |
+|------------------------------|-----------------|
+| Design tool internals | Kai explains how SketchSpark's own generation pipeline uses libgit2 to version-control each of the 5 generated options as lightweight branches — the product's architecture mirrors Git's branching model |
+| UX patterns for Git integration | Nora designs SketchSpark's "version history" panel — translating Git concepts (commits, branches, diffs) into a visual interface that non-technical designers can use |
+| Dulwich / Python integration | Priya's export script uses Dulwich to auto-commit illustration assets to Git whenever she exports from her design tool — removing manual `git add` from her workflow |
 
 ### Appendix C — Reference
 
 | Revision Note Recommendation | Storyline Scene |
 |------------------------------|-----------------|
-| Workflow-based organization | Commands grouped by Meadow workflow: "Starting your day" (pull, status), "Making changes" (add, commit), "Sharing work" (push, PR), "Releasing" (tag, archive) |
+| Workflow-based organization | Commands grouped by SketchSpark workflow: "Starting a research phase" (init, clone, branch), "Daily design work" (status, add, commit, diff), "Reviewing options" (log, show, diff between branches), "Collaborating" (push, pull, fetch, merge), "Shipping a release" (tag, archive, merge to main) |
 
 ---
 
 ## Key Benefits of the Unified Storyline
 
-1. **Progressive complexity**: readers learn Git operations in the order they'd encounter them on a real project
-2. **Emotional investment**: readers care about Nora's team and their product — mistakes feel relatable, not abstract
-3. **Artifact familiarity**: by Chapter 5, `design-tokens.json` and `colors.json` are old friends — readers focus on the Git concept, not parsing new file names
-4. **Natural motivation**: each chapter answers "why do I need this?" through the story's progression (branching because Sam joined, GitHub because they went public, hooks because they need quality gates)
-5. **Character-driven scenarios**: Sam's sloppiness triggers stash/reset/recovery lessons; Priya's binary files trigger LFS/attributes lessons; Nora's leadership triggers governance/hooks/release lessons
+1. **Progressive complexity**: readers learn Git operations in the order they'd encounter them building a real product — research notes before merge conflicts, branching before rebasing
+2. **Product mirrors Git**: SketchSpark generates 5 parallel options from 1 sketch; Git creates parallel branches from 1 commit. The product's core concept reinforces the most important Git mental model.
+3. **Artifact familiarity**: by Chapter 5, `product-brief.md`, `user-flows.md`, and `screens/results/` are familiar landmarks — readers focus on the Git concept, not parsing new file names
+4. **Full lifecycle coverage**: research, concept, design, build, test, launch, scale — every phase produces different artifacts (text vs. binary, solo vs. collaborative) that naturally teach different Git workflows
+5. **Natural motivation**: each chapter answers "why do I need this?" through the product's progression — branching because the team explores 3 UI options, GitHub because they launched a beta, hooks because they need quality gates before shipping
+6. **Character-driven scenarios**: Sam's speed creates stash/reset/recovery lessons; Priya's binary files trigger LFS/attributes lessons; Nora's leadership triggers governance/review/release lessons; Kai's ML pipeline triggers submodule/cross-functional lessons
 
 ---
 
@@ -214,10 +238,11 @@ These artifacts appear and evolve across chapters, giving readers anchoring refe
 | Risk | Mitigation |
 |------|------------|
 | Storyline feels forced in reference chapters (App C) | Use storyline as organizational principle, not narrative prose |
-| Readers skip chapters and miss context | Each chapter opens with a 2-line "Previously in Meadow" recap |
-| Product choice alienates some readers | "Wellness app" is generic enough; swap product name without breaking any examples |
-| Characters feel contrived | Keep characterization minimal — traits emerge from actions, not descriptions |
-| Chapters 9-10 have low design relevance | Migration and internals are naturally "advanced" — storyline justifies why the team encounters them |
+| Readers skip chapters and miss context | Each chapter opens with a 2-line "Previously on SketchSpark" recap |
+| AI product concept feels niche | The design workflow (research → concept → UI → ship) is universal; the AI generation is flavor, not prerequisite |
+| Characters feel contrived | Keep characterization minimal — traits emerge from actions (Sam's messy commits, Priya's large files), not backstory |
+| Chapters 9-10 have lower design relevance | Migration and internals are naturally "advanced" — the storyline (acquiring a competitor, recovering before launch) justifies why the team encounters them |
+| Binary file challenges recur without resolution | Thread Git LFS as a progressive solution: mentioned Ch1, explained Ch5, configured Ch8, essential in Ch9 |
 
 ---
 
@@ -225,9 +250,9 @@ These artifacts appear and evolve across chapters, giving readers anchoring refe
 
 | Priority | Action | Impact |
 |----------|--------|--------|
-| 1 | Lock character names and roles across all chapters | Consistency foundation |
-| 2 | Define the `meadow-design-system` repo file structure used in examples | Artifact continuity |
-| 3 | Rewrite Ch1-3 examples with storyline (highest reader volume) | First impression |
-| 4 | Rewrite Ch5-6 collaboration examples (most design-relevant) | Core value proposition |
-| 5 | Update Ch7-8 tool examples with established artifacts | Builds on familiarity |
-| 6 | Adapt Ch4, Ch9-10, appendices last (lowest impact) | Completeness |
+| 1 | Lock character names, roles, and traits across all chapters | Consistency foundation |
+| 2 | Define the `sketchspark/` repo file structure used in examples | Artifact continuity |
+| 3 | Rewrite Ch1-3 examples with storyline (highest reader volume, establishes the product) | First impression — readers decide here whether to continue |
+| 4 | Rewrite Ch5-6 collaboration examples (most design-relevant, introduces full team) | Core value proposition — collaboration is why designers need Git |
+| 5 | Update Ch7-8 tool examples with established artifacts and characters | Builds on familiarity — advanced tools feel less intimidating |
+| 6 | Adapt Ch4, Ch9-10, appendices last (infrastructure and advanced topics) | Completeness — important but lower reader volume |
