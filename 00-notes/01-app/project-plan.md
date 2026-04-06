@@ -1,165 +1,165 @@
 # SketchSpark — Project Plan
 
-## Context
+## What We're Building
 
-SketchSpark is the design repository that serves as the running example throughout Pro Git, Second Edition. It is **not** a working application — it is a realistic, production-quality collection of design artifacts that a real product team would create. Every file must be believable enough that a reader can follow the book's Git tutorials using real content, not lorem ipsum.
+A working web application. A designer uploads or draws a rough sketch, SketchSpark sends it through an AI vision model, and returns up to 5 high-fidelity UI design options. The designer compares, selects, refines, and exports.
 
-The repository tells a story across the book's 10 chapters and 3 appendices. Files are introduced, modified, branched, merged, conflicted, and tagged at specific points in that storyline. The plan below builds the repository in storyline order so that each phase produces the artifacts the corresponding chapters need.
-
-**Team**: You (direction, review, decisions) and me (research, writing, generation).
+**Team**: You (direction, review, decisions) and me (design, code, implementation).
 
 ---
 
-## Scope
+## Technical Architecture
 
-### What we are building
-The complete SketchSpark design repository with all artifacts described in the product spec and storyline — research documents, concept work, screen descriptions, illustrations metadata, icons, AI pipeline configuration, design tokens, documentation, and contribution guidelines. Every file has real, internally consistent content.
+### Frontend
+- **Framework**: React + TypeScript
+- **Bundler**: Vite
+- **Styling**: Tailwind CSS + design tokens
+- **Canvas**: HTML5 Canvas API (freehand drawing)
+- **State**: Zustand (lightweight, minimal boilerplate)
 
-### What we are not building
-- A working frontend application (React/TypeScript)
-- A working AI pipeline (Python/PyTorch)
-- Actual Figma source files or rasterized screen mockups
-- The Git history choreography (commits, branches, tags tied to specific chapters)
+### Backend
+- **Runtime**: Node.js + Express (or Fastify)
+- **AI Integration**: Anthropic Claude API (vision model for sketch interpretation, text generation for UI output)
+- **Storage**: Local filesystem for MVP, S3-compatible for later
+- **Auth**: None for MVP (single-user local app)
 
-The Git history choreography is a separate project. This plan produces the **content** that history will contain.
+### AI Pipeline
+- Claude's vision capabilities analyze uploaded sketches
+- Structured prompt templates produce UI layout definitions (JSON)
+- 5 parallel requests with different strategy parameters generate the options
+- Design tokens injected into prompts to constrain output
+
+### Export
+- Generated layouts rendered as HTML/CSS
+- SVG and PNG export via server-side rendering
+- React component export as downloadable code
+
+---
+
+## MVP Scope (v0.5-alpha)
+
+The smallest thing that demonstrates the core value: **one sketch in, five options out.**
+
+### In
+- Upload a sketch image (JPEG/PNG drag-and-drop)
+- AI analyzes sketch and generates 5 layout interpretations
+- Side-by-side comparison view of all 5 options
+- Each option rendered as a live HTML/CSS preview
+- Select and view any option full-screen
+
+### Out (deferred)
+- Freehand drawing canvas
+- Import from Figma/Sketch
+- Refinement editor
+- Export to Figma/SVG/PNG/React
+- Design token configuration UI
+- History/versioning
+- Onboarding flow
+- Multi-platform generation (iOS/Android)
+- User accounts and collaboration
 
 ---
 
 ## Phases
 
-### Phase 1: Research & Discovery (Storyline: Ch 1–2)
+### Phase 1: Project Scaffolding
 
-Nora's solo research before the repository exists. These files are the first things committed.
+Set up the monorepo, tooling, and dev environment.
 
-| Deliverable | File(s) | Format | Notes |
-|------------|---------|--------|-------|
-| Product brief | `product-brief.md` | Markdown | Vision, problem, solution, milestones |
-| Early adopter persona | `research/personas/early-adopter.md` | Markdown | Maya — freelance designer |
-| Team lead persona | `research/personas/team-lead.md` | Markdown | David — design team manager |
-| Competitive analysis | `research/competitive-analysis.md` | Markdown | Uizard, Galileo, Framer, Figma, Midjourney |
-| Interview notes (round 1) | `research/interview-notes/round-1-findings.md` | Markdown | 8 participants, discovery phase |
-| Journey map description | `research/journey-maps/sketch-to-prototype.md` | Markdown | Text description (PNG placeholder noted) |
-| Changelog | `CHANGELOG.md` | Markdown | Started with v0.1-concept |
+| Task | Detail |
+|------|--------|
+| Initialize monorepo | `packages/client` (React) + `packages/server` (Node) |
+| Client scaffolding | Vite + React + TypeScript + Tailwind |
+| Server scaffolding | Express/Fastify + TypeScript |
+| Design tokens | `design-tokens.json` consumed by Tailwind config |
+| Dev tooling | ESLint, Prettier, tsconfig, shared types |
+| Scripts | `dev` (both client + server), `build`, `lint` |
 
-**Decision needed from you**: The storyline spec shows `research/personas/` with two files and `research/interview-notes/` with two files (round 1 and round 2). Round 2 comes later (post-alpha). Should we create the directory structure now with only round 1, or stub round 2?
+### Phase 2: Sketch Upload + AI Analysis
 
----
+The input half of the pipeline.
 
-### Phase 2: Concept Design (Storyline: Ch 2–3)
+| Task | Detail |
+|------|--------|
+| Upload UI | Drag-and-drop zone, file picker, image preview |
+| Upload endpoint | `POST /api/sketch` — accepts image, stores it, returns ID |
+| Sketch analysis | Send image to Claude vision API, extract element list, hierarchy, grouping, intent patterns |
+| Analysis response | Structured JSON: detected elements, spatial relationships, confidence |
+| Error handling | File validation, size limits, API failures |
 
-Nora creates the repository. She and Sam begin concept work. This is where the information architecture, user flows, and wireframes take shape.
+### Phase 3: Option Generation
 
-| Deliverable | File(s) | Format | Notes |
-|------------|---------|--------|-------|
-| Information architecture | `concept/information-architecture.md` | Markdown | Site map, navigation model, data objects |
-| User flows | `concept/user-flows.md` | Markdown | 7 core flows with diagrams |
-| Wireframe descriptions | `concept/wireframes/sketch-input.md` | Markdown | Text wireframes for key screens |
-| Wireframe descriptions | `concept/wireframes/results-comparison.md` | Markdown | The 5-option comparison view |
-| Design tokens v1 | `design-tokens.json` | JSON | Initial color, type, spacing, radius tokens |
-| Gitignore | `.gitignore` | Text | OS files, editor files, build artifacts |
-| Gitattributes | `.gitattributes` | Text | Binary file handling, diff settings |
+The AI core — five parallel interpretations from one analysis.
 
-**Decision needed from you**: Wireframes in the storyline spec are PNGs (binary). We can't generate actual images, so options are: (a) text-based wireframes in markdown, (b) SVG wireframes, or (c) placeholder PNGs with a manifest describing what they depict. Which approach?
+| Task | Detail |
+|------|--------|
+| Strategy definitions | 5 strategies: Faithful, Grid, Editorial, Minimal, Dense |
+| Prompt templates | Per-strategy prompts that produce structured layout JSON |
+| Parallel generation | 5 concurrent Claude API calls, each with different strategy |
+| Layout schema | Define the JSON schema for generated layouts (containers, elements, styles) |
+| Generation endpoint | `POST /api/generate` — takes sketch analysis, returns 5 layout options |
+| Progress feedback | SSE or polling for generation status |
 
----
+### Phase 4: Results Comparison UI
 
-### Phase 3: Visual Design & Assets (Storyline: Ch 3–5)
+The output half — displaying and comparing the 5 options.
 
-Sam and Priya join. Sam creates screen designs. Priya builds illustrations and icons. This is the binary-heavy phase that teaches branching, merging, and conflict resolution.
+| Task | Detail |
+|------|--------|
+| Results grid | 5-up card layout showing all options |
+| Live preview | Each option rendered as real HTML/CSS in an iframe or shadow DOM |
+| Option metadata | Strategy label, confidence score, key interpretation notes |
+| Full-screen view | Click to expand any option to full viewport |
+| Responsive | Results page works on desktop (side-by-side) and tablet (scrollable) |
 
-| Deliverable | File(s) | Format | Notes |
-|------------|---------|--------|-------|
-| Screen: onboarding welcome | `screens/onboarding/welcome.md` | Markdown | Screen spec with layout, states, interactions |
-| Screen: sketch input upload | `screens/sketch-input/upload-flow.md` | Markdown | Upload flow spec |
-| Screen: results card layout | `screens/results/card-layout.md` | Markdown | Card-based comparison view |
-| Screen: results list layout | `screens/results/list-layout.md` | Markdown | List-based comparison view |
-| Screen: results freeform | `screens/results/canvas-freeform.md` | Markdown | Freeform canvas view |
-| Onboarding illustrations | `illustrations/onboarding/step-1-upload.md` | Markdown | Art direction specs |
-| Onboarding illustrations | `illustrations/onboarding/step-2-generate.md` | Markdown | Art direction specs |
-| Onboarding illustrations | `illustrations/onboarding/step-3-refine.md` | Markdown | Art direction specs |
-| Marketing hero | `illustrations/marketing/hero-image.md` | Markdown | Art direction spec |
-| Navigation icons | `icons/navigation/*.svg` | SVG | home, settings, history |
-| Action icons | `icons/actions/*.svg` | SVG | upload, generate, compare |
+### Phase 5: Design Token Integration
 
-**Decision needed from you**: The storyline has Sam creating competing screen layouts (card vs. list) on separate branches that get merged. Should we write both versions now with enough difference that a merge conflict is realistic? Or handle that in the Git choreography phase?
+Brand consistency across all generated output.
 
----
+| Task | Detail |
+|------|--------|
+| Token format | `design-tokens.json` — colors, typography, spacing, radii |
+| Token injection | Tokens included in generation prompts as constraints |
+| Token preview | Settings page to view/edit current tokens |
+| Default tokens | Ship with sensible defaults (the ones from the spec) |
+| Generated CSS | Output layouts reference token values, not hard-coded colors |
 
-### Phase 4: AI Pipeline Configuration (Storyline: Ch 5–7)
+### Phase 6: Polish + Hardening
 
-Kai joins. He builds out the AI pipeline config — model parameters, prompt templates, training data manifest. These are the structured text files that demonstrate hooks, validation, and code review.
+Make it feel like a real product.
 
-| Deliverable | File(s) | Format | Notes |
-|------------|---------|--------|-------|
-| Model parameters | `pipeline/model-params.yaml` | YAML | Version, inference, generation, quality settings |
-| Core prompt | `pipeline/prompts/sketch-to-ui.txt` | Text | Main generation prompt template |
-| Mobile prompt | `pipeline/prompts/mobile-layout.txt` | Text | Platform-specific adaptation |
-| Accessibility prompt | `pipeline/prompts/accessibility-check.txt` | Text | Post-generation audit prompt |
-| Training manifest | `pipeline/training-data-manifest.json` | JSON | Dataset categories, counts, preprocessing |
-
----
-
-### Phase 5: Public Beta Prep (Storyline: Ch 6–8)
-
-SketchSpark goes public. Marcus contributes. Documentation, contribution guidelines, and the second round of research appear.
-
-| Deliverable | File(s) | Format | Notes |
-|------------|---------|--------|-------|
-| Contributing guide | `CONTRIBUTING.md` | Markdown | How to contribute to the design repo |
-| Setup guide | `docs/setup-guide.md` | Markdown | Getting started for new contributors |
-| API reference | `docs/api-reference.md` | Markdown | Pipeline API and token format docs |
-| Interview notes (round 2) | `research/interview-notes/round-2-findings.md` | Markdown | Post-alpha validation |
-| Updated design tokens | `design-tokens.json` | JSON | Refined values from beta testing |
-| Mobile prompt improvement | `pipeline/prompts/mobile-layout.txt` | Text | Marcus's contribution |
+| Task | Detail |
+|------|--------|
+| Loading states | Generation progress with strategy-by-strategy completion |
+| Error states | Sketch too simple, generation timeout, API failure |
+| Empty states | Dashboard before first sketch |
+| Accessibility | Keyboard navigation, screen reader support, contrast |
+| Performance | Image optimization, lazy loading, caching |
 
 ---
 
-### Phase 6: Launch Polish (Storyline: Ch 8–10)
+## Decisions Needed
 
-Final refinements, accessibility audit, and v1.0 tag. Hooks, attributes, and internals chapters reference these files.
+1. **Monorepo or single app?** Monorepo (`packages/client` + `packages/server`) gives clean separation. A single Next.js app is simpler but couples things. My recommendation: monorepo — it's not much more setup and keeps the AI pipeline isolated.
 
-| Deliverable | File(s) | Format | Notes |
-|------------|---------|--------|-------|
-| Accessibility audit results | `docs/accessibility-audit.md` | Markdown | WCAG AA compliance report |
-| Updated model params | `pipeline/model-params.yaml` | YAML | Production-tuned settings |
-| Final changelog | `CHANGELOG.md` | Markdown | Full version history through v1.0 |
-| Hook scripts (described) | `docs/git-hooks.md` | Markdown | Documents validation hooks for pipeline |
+2. **Claude API model?** Claude Sonnet for speed (5 parallel calls need to be fast) or Opus for quality? We could use Sonnet for generation and Opus for the initial sketch analysis.
 
----
+3. **Layout output format?** The AI needs to produce something we can render. Options:
+   - **(a) Structured JSON** — a layout tree we render with a custom React renderer
+   - **(b) HTML/CSS directly** — Claude generates the actual markup
+   - **(c) Tailwind classes** — Claude generates HTML with Tailwind utilities
 
-## File Inventory Summary
+   My recommendation: **(c)** — Tailwind classes are token-friendly, Claude knows them well, and we can render them directly without a custom renderer.
 
-| Category | File Count | Formats |
-|----------|-----------|---------|
-| Research | 6 | Markdown |
-| Concept | 4 | Markdown, JSON |
-| Screens | 5 | Markdown |
-| Illustrations | 4 | Markdown |
-| Icons | 6+ | SVG |
-| Pipeline | 5 | YAML, Text, JSON |
-| Docs | 5 | Markdown |
-| Root config | 5 | Markdown, JSON, Text |
-| **Total** | **~40** | |
+4. **Where does this live?** In `00-notes/01-app/` alongside the plan, or in a separate top-level directory? Or a separate repo entirely?
 
 ---
 
-## Working Order
+## Working Process
 
-We build in phase order. Within each phase:
-
-1. I draft all files for the phase
-2. You review and direct revisions
-3. We finalize and commit
+1. I build each phase end-to-end (code, not descriptions)
+2. You review, test, and direct changes
+3. We iterate until it works
 4. Move to next phase
 
-Phases 1–2 are the foundation — everything else builds on them. Phases 3–4 can run in parallel since they cover different file sets (design assets vs. pipeline config). Phases 5–6 are sequential since they modify earlier files.
-
----
-
-## Open Questions
-
-1. **Wireframe format** — Text markdown, SVG, or placeholder binary with manifest?
-2. **Round 2 interviews** — Create directory now with only round 1, or wait?
-3. **Branch-ready content** — Write competing versions (card vs. list layout) now, or defer to Git choreography?
-4. **Screen specs** — How detailed? Brief descriptions, or full interaction specs with every state and edge case?
-5. **Storyline fidelity** — The spec references specific filenames (`.fig`, `.psd`, `.png`). Do we create markdown equivalents at those paths, or use our own naming?
+Phases 1–4 are the critical path to MVP. Phase 5 enhances quality. Phase 6 is polish. We should be able to demo "upload sketch → see 5 options" after Phase 4.
