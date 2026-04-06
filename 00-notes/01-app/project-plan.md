@@ -138,28 +138,9 @@ Make it feel like a real product.
 
 ---
 
-## Decisions Needed
+## Decisions (Resolved)
 
-1. **Monorepo or single app?** Monorepo (`packages/client` + `packages/server`) gives clean separation. A single Next.js app is simpler but couples things. My recommendation: monorepo — it's not much more setup and keeps the AI pipeline isolated.
-
-2. **Claude API model?** Claude Sonnet for speed (5 parallel calls need to be fast) or Opus for quality? We could use Sonnet for generation and Opus for the initial sketch analysis.
-
-3. **Layout output format?** The AI needs to produce something we can render. Options:
-   - **(a) Structured JSON** — a layout tree we render with a custom React renderer
-   - **(b) HTML/CSS directly** — Claude generates the actual markup
-   - **(c) Tailwind classes** — Claude generates HTML with Tailwind utilities
-
-   My recommendation: **(c)** — Tailwind classes are token-friendly, Claude knows them well, and we can render them directly without a custom renderer.
-
-4. **Where does this live?** In `00-notes/01-app/` alongside the plan, or in a separate top-level directory? Or a separate repo entirely?
-
----
-
-## Working Process
-
-1. I build each phase end-to-end (code, not descriptions)
-2. You review, test, and direct changes
-3. We iterate until it works
-4. Move to next phase
-
-Phases 1–4 are the critical path to MVP. Phase 5 enhances quality. Phase 6 is polish. We should be able to demo "upload sketch → see 5 options" after Phase 4.
+1. **Monorepo.** `packages/client` + `packages/server`.
+2. **Claude models.** Sonnet for the 5 parallel generation calls. Opus for sketch analysis.
+3. **Layout output.** Structured JSON layout tree, rendered in-app as live previews. Not raw HTML files — the app owns rendering via a preview component.
+4. **Location.** `00-notes/01-app/`.
