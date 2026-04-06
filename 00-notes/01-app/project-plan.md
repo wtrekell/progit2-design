@@ -82,8 +82,10 @@ The AI returns structured JSON, not raw HTML. The client owns rendering. Each la
 
 ## Build Phases (v0.5-alpha)
 
+Each phase follows: **UX design → review/approval → development.** No code gets written for a screen or interaction until the design work is done and approved.
+
 ### Phase 1: Project Scaffolding
-Set up the monorepo, tooling, and dev environment so both packages build and run.
+Set up the monorepo, tooling, and dev environment so both packages build and run. (No UX design needed — this is pure infrastructure.)
 
 - npm workspaces with `packages/client` and `packages/server`
 - Vite + React + TypeScript + Tailwind for client
@@ -93,32 +95,35 @@ Set up the monorepo, tooling, and dev environment so both packages build and run
 - Dev script that runs both client and server concurrently
 - ESLint + Prettier
 
-### Phase 2: Sketch Upload
+### Phase 2: UX Design — Core Flows
+Design the end-to-end user experience before building any screens.
+
+- User flow: upload sketch → generation → comparison → selection
+- Wireframes for each screen state (empty, loading, populated, error)
+- Interaction model: how the 5-up comparison works, what "select" means, full-screen behavior
+- Information hierarchy: what the user sees first, second, third
+- Design tokens applied to wireframes
+- Responsive breakpoints and layout behavior
+
+### Phase 3: Sketch Upload
 The input side — get an image from the user to the server.
 
-- Drag-and-drop upload zone with image preview
+- **Design**: Upload screen per approved wireframes and interaction spec
 - `POST /api/sketches` endpoint — validates, stores, returns sketch ID
+- Drag-and-drop upload zone with image preview
 - File type validation (JPEG, PNG), size limits
 - Client displays the uploaded sketch and a "Generate" button
 
-### Phase 3: AI Sketch Analysis
-Send the uploaded sketch to Claude and get back a structured understanding of it.
+### Phase 4: AI Pipeline (Analysis + Generation)
+The backend AI work — sketch analysis and option generation.
 
 - Anthropic SDK integration on the server
-- System prompt for sketch interpretation (elements, hierarchy, grouping, intent)
-- `POST /api/sketches/:id/analyze` — sends image to Claude Opus, returns structured analysis JSON
-- Analysis result stored alongside the sketch
-- Client displays analysis summary (element count, detected patterns)
-
-### Phase 4: Option Generation
-The core — five parallel AI calls producing five layout trees.
-
+- Sketch analysis: send image to Claude Opus, return structured JSON (elements, hierarchy, grouping, intent)
 - 5 layout strategy definitions (Faithful, Grid, Editorial, Minimal, Dense)
 - Per-strategy prompt templates
-- `POST /api/sketches/:id/generate` — fires 5 parallel Sonnet calls
-- Each returns a structured JSON layout tree conforming to the layout schema
+- `POST /api/sketches/:id/generate` — fires 5 parallel Sonnet calls, returns layout trees
 - SSE endpoint for real-time progress (which strategies have completed)
-- Results stored per sketch
+- Layout schema definition (containers, elements, styles, accessibility metadata)
 
 ### Phase 5: Preview Renderer
 The component that turns a JSON layout tree into a live, interactive UI preview.
@@ -132,10 +137,12 @@ The component that turns a JSON layout tree into a live, interactive UI preview.
 ### Phase 6: Results Comparison UI
 The output side — showing all 5 options and letting the designer compare them.
 
+- **Design**: Comparison screen per approved wireframes and interaction spec
 - 5-up grid layout with thumbnail previews
 - Click any option to view full-screen with the preview renderer
 - Strategy label and confidence score on each card
 - Key interpretation annotations per option
+- Generation progress screen with per-strategy status
 - Works on desktop (side-by-side) and tablet (scroll)
 
 ---

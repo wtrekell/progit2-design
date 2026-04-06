@@ -42,16 +42,19 @@ A designer uploads a rough sketch. The app analyzes it with Claude Opus, then ge
 
 ## Build Phases (MVP)
 
-1. Project scaffolding (monorepo, tooling, dev environment)
-2. Sketch upload (drag-and-drop UI, server endpoint, storage)
-3. AI sketch analysis (Claude Opus integration, structured analysis output)
-4. Option generation (5 parallel Sonnet calls, strategy prompts, layout schema)
+Each phase follows: **UX design → review/approval → development.** No code for a screen or interaction until design is done and approved.
+
+1. Project scaffolding (monorepo, tooling, dev environment — no design needed)
+2. UX design — core flows (user flows, wireframes, interaction specs, responsive behavior)
+3. Sketch upload (design first, then build: upload UI + server endpoint)
+4. AI pipeline (sketch analysis + option generation — backend, no UI)
 5. Preview renderer (JSON layout tree → live rendered UI component)
-6. Results comparison UI (5-up grid, full-screen view, metadata display)
+6. Results comparison UI (design first, then build: 5-up grid, full-screen, progress)
 
 ## How We Work
 
-- Two-person team. The user directs, reviews, decides. Claude codes and implements.
+- Two-person team. The user is a UX designer who owns direction, design, review, and product decisions. Claude codes and implements.
+- Design comes before dev. No building screens without UX design work (flows, wireframes, interaction specs) reviewed and approved first. Dev without design = crap.
 - Build each phase end-to-end before moving to the next.
 - Do not ask unnecessary questions. Build what the plan says.
 - Do not create documentation files, READMEs, or planning artifacts unless asked.
