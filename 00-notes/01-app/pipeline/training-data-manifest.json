@@ -1,0 +1,51 @@
+{
+  "manifest_version": "1.0",
+  "dataset": "sketchspark-training-v3",
+  "description": "Training data manifest for sketch interpretation and UI generation models",
+  "categories": [
+    {
+      "name": "hand-drawn-photos",
+      "description": "Photographs of hand-drawn sketches on paper, whiteboards, and napkins",
+      "count": 2400,
+      "source": "internal-collection",
+      "format": "JPEG",
+      "resolution": "variable (phone camera quality)",
+      "labels": ["elements", "hierarchy", "grouping", "intent-patterns"]
+    },
+    {
+      "name": "tablet-sketches",
+      "description": "Digital freehand sketches drawn on tablets (iPad, Surface)",
+      "count": 1800,
+      "source": "internal-collection",
+      "format": "PNG",
+      "resolution": "2048x1536",
+      "labels": ["elements", "hierarchy", "grouping", "intent-patterns"]
+    },
+    {
+      "name": "low-fidelity-wireframes",
+      "description": "Low-fidelity wireframes exported from Figma, Sketch, and Balsamiq",
+      "count": 3200,
+      "source": "public-datasets + internal-collection",
+      "format": "PNG",
+      "resolution": "1440x900",
+      "labels": ["elements", "hierarchy", "grouping", "intent-patterns", "platform"]
+    },
+    {
+      "name": "high-fidelity-pairs",
+      "description": "Paired sketch + polished UI for supervised training",
+      "count": 1500,
+      "source": "design-team-contributions",
+      "format": "PNG pairs",
+      "resolution": "1440x900 (both sketch and result)",
+      "labels": ["elements", "layout-strategy", "token-mapping", "accessibility-pass"]
+    }
+  ],
+  "total_samples": 8900,
+  "validation_split": 0.15,
+  "test_split": 0.1,
+  "preprocessing": {
+    "normalization": "resize-to-1024-max-dimension",
+    "augmentation": ["rotation-5deg", "brightness-jitter", "perspective-warp"],
+    "filtering": "remove-blurry (laplacian-variance < 100)"
+  }
+}

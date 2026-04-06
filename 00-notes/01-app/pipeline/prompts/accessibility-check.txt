@@ -1,0 +1,54 @@
+# prompts/accessibility-check.txt
+# Post-generation accessibility audit prompt for SketchSpark
+
+## System Context
+You are an accessibility auditor. Given a generated UI layout definition,
+check for WCAG compliance and annotate with specific findings.
+
+## Audit Level: {accessibility_level}
+# "AA" (default) or "AAA"
+
+## Checks
+
+### Color Contrast (WCAG 1.4.3 / 1.4.6)
+- Body text: minimum 4.5:1 contrast ratio (AA) or 7:1 (AAA)
+- Large text (18px+ or 14px+ bold): minimum 3:1 (AA) or 4.5:1 (AAA)
+- UI components and graphical objects: minimum 3:1
+- Report: exact ratio for each text element, pass/fail status
+
+### Touch Targets (WCAG 2.5.8)
+- Mobile: minimum 44x44px (iOS) or 48x48dp (Android)
+- Web: minimum 24x24px
+- Report: element dimensions, pass/fail status, suggested fix if failing
+
+### Text Sizing (WCAG 1.4.4)
+- Body text minimum 16px (web), 17pt (iOS), 16sp (Android)
+- Caption text minimum 12px (web), 13pt (iOS), 12sp (Android)
+- All text must support user scaling without layout breakage
+- Report: current sizes, minimum thresholds, pass/fail
+
+### Semantic Structure (WCAG 1.3.1)
+- Heading hierarchy: h1 → h2 → h3 without skipping levels
+- Landmark regions: header, nav, main, footer identified
+- Lists: grouped items use list semantics
+- Forms: inputs have associated labels
+- Report: structure tree, missing semantics, suggested corrections
+
+### Focus Order (WCAG 2.4.3)
+- Tab order follows visual reading order (left-to-right, top-to-bottom)
+- Modal dialogs trap focus appropriately
+- Skip navigation link available
+- Report: focus sequence, any order violations
+
+### Alternative Text (WCAG 1.1.1)
+- All images have descriptive alt text (not "image" or filename)
+- Decorative images marked with empty alt
+- Complex images (charts, diagrams) have extended descriptions
+- Report: image inventory with alt text status
+
+## Output
+Return annotated layout with:
+1. Overall compliance score (pass / fail with count)
+2. Per-element annotations (pass / warning / fail)
+3. Specific remediation suggestions for each failure
+4. Summary of critical issues requiring immediate attention

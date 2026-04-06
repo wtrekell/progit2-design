@@ -1,0 +1,34 @@
+model:
+  version: "sketchspark-v3.2"
+  inference:
+    temperature: 0.7          # Higher = more creative variation between options
+    max_tokens: 8192
+    timeout_seconds: 45
+  generation:
+    num_options: 5             # 1-5 parallel options
+    min_confidence: 0.6        # Don't show options below this confidence
+    platform: "web"            # web | ios | android
+    responsive_breakpoints:
+      - 1440
+      - 768
+      - 375
+  quality:
+    accessibility_level: "AA"  # AA | AAA
+    contrast_check: true
+    touch_target_check: true
+  strategies:
+    - name: "Faithful"
+      description: "Closest interpretation of the sketch's literal layout"
+      weight: 1.0
+    - name: "Grid"
+      description: "Elements reorganized into a structured grid system"
+      weight: 1.0
+    - name: "Editorial"
+      description: "Asymmetric, magazine-style layout with visual hierarchy emphasis"
+      weight: 1.0
+    - name: "Minimal"
+      description: "Maximum whitespace, reduced elements, focus on core content"
+      weight: 1.0
+    - name: "Dense"
+      description: "Information-rich, compact layout maximizing content density"
+      weight: 1.0
