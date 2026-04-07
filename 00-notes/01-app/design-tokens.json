@@ -1,0 +1,32 @@
+{
+  "colors": {
+    "primary": "#2563EB",
+    "secondary": "#7C3AED",
+    "surface": "#FFFFFF",
+    "on-surface": "#1E293B",
+    "error": "#DC2626",
+    "success": "#16A34A"
+  },
+  "typography": {
+    "heading-1": { "family": "Inter", "weight": 700, "size": "32px", "line-height": 1.2 },
+    "heading-2": { "family": "Inter", "weight": 600, "size": "24px", "line-height": 1.3 },
+    "heading-3": { "family": "Inter", "weight": 600, "size": "20px", "line-height": 1.35 },
+    "body": { "family": "Inter", "weight": 400, "size": "16px", "line-height": 1.5 },
+    "body-small": { "family": "Inter", "weight": 400, "size": "14px", "line-height": 1.5 },
+    "caption": { "family": "Inter", "weight": 400, "size": "12px", "line-height": 1.4 }
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px",
+    "2xl": "48px"
+  },
+  "border-radius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "16px",
+    "full": "9999px"
+  }
+}
