@@ -1,0 +1,5 @@
+.DS_Store
+__MACOSX/
+*.sketch~
+*.figma_cache
+Thumbs.db

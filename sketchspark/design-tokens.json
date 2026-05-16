@@ -1,0 +1,14 @@
+# Design Tokens
+
+{
+  "colors": {
+    "primary": "#2563EB",
+    "secondary": "#7C3AED",
+    "surface": "#FFFFFF",
+    "on-surface": "#1E293B"
+  },
+  "spacing": {
+    "md": "16px",
+    "lg": "24px"
+  }
+}
